@@ -1,0 +1,255 @@
+/* ============================================================
+   FONTES — importar antes de qualquer outra regra
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0818;
+  color: white;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   SCROLLBAR PERSONALIZADA
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0818;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #7c3aed, #ec4899);
+  border-radius: 3px;
+}
+
+/* ============================================================
+   FUNDO COM GRADIENTE ANIMADO
+   ============================================================ */
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    #0a0818,
+    #1a0a3e,
+    #2d1b69,
+    #4c1d95,
+    #831843,
+    #1a0a3e,
+    #0a0818
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 14s ease infinite;
+}
+
+@keyframes gradientBG {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   CORAÇÃO BATENDO
+   ============================================================ */
+.beating-heart {
+  display: inline-block;
+  animation: beat 1.3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8));
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.22); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.15); }
+  70%       { transform: scale(1); }
+}
+
+/* ============================================================
+   GLASSMORPHISM
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================================
+   CORAÇÕES FLUTUANDO (background)
+   ============================================================ */
+.floating-heart {
+  position: fixed;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg) scale(0);   opacity: 0; }
+  10%  { transform: translateY(-8vh) rotate(12deg) scale(1); opacity: 0.9; }
+  90%  { transform: translateY(-88vh) rotate(-8deg) scale(0.85); opacity: 0.4; }
+  100% { transform: translateY(-105vh) rotate(20deg) scale(0.5); opacity: 0; }
+}
+
+/* ============================================================
+   CORAÇÃO AO CLICAR
+   ============================================================ */
+.click-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 2rem;
+  z-index: 200;
+  animation: clickPop 0.85s ease forwards;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes clickPop {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  40%  { transform: translate(-50%, -80%) scale(1.6); opacity: 1; }
+  100% { transform: translate(-50%, -130%) scale(0.7); opacity: 0; }
+}
+
+/* ============================================================
+   INDICADOR DE SCROLL
+   ============================================================ */
+.scroll-dot {
+  animation: scrollBounce 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(8px); opacity: 0.25; }
+}
+
+/* ============================================================
+   BARRA DE PROGRESSO DO PLAYER
+   ============================================================ */
+.progress-bar {
+  background: linear-gradient(90deg, #7c3aed, #ec4899, #f43f5e);
+  background-size: 200% 100%;
+  animation: progressGlow 2.5s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes progressGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* ============================================================
+   BARRAS DO EQUALIZADOR
+   ============================================================ */
+.eq-bar {
+  animation: eqAnim 0.7s ease-in-out infinite alternate;
+}
+.eq-bar:nth-child(1) { animation-delay: 0s;    height: 6px; }
+.eq-bar:nth-child(2) { animation-delay: 0.12s; height: 14px; }
+.eq-bar:nth-child(3) { animation-delay: 0.08s; height: 8px; }
+.eq-bar:nth-child(4) { animation-delay: 0.18s; height: 18px; }
+.eq-bar:nth-child(5) { animation-delay: 0.04s; height: 10px; }
+
+@keyframes eqAnim {
+  from { transform: scaleY(0.3); }
+  to   { transform: scaleY(1); }
+}
+
+/* ============================================================
+   GALERIA DE FOTOS
+   ============================================================ */
+.photo-item {
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  position: relative;
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease, filter 0.55s ease;
+  display: block;
+}
+
+.photo-item:hover img {
+  transform: scale(1.09);
+  filter: brightness(1.08) saturate(1.25);
+}
+
+/* Fallback quando imagem não carrega */
+.photo-placeholder {
+  background: linear-gradient(135deg, #4c1d95 0%, #831843 100%);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   EFEITOS DE TEXTO
+   ============================================================ */
+.text-glow-pink {
+  text-shadow: 0 0 20px rgba(236, 72, 153, 0.55),
+               0 0 45px rgba(236, 72, 153, 0.25);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 20px rgba(124, 58, 237, 0.55),
+               0 0 45px rgba(124, 58, 237, 0.25);
+}
+
+/* ============================================================
+   RANGE INPUT (VOLUME)
+   ============================================================ */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ec4899, #7c3aed);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(236, 72, 153, 0.5);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #ec4899, #7c3aed);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
